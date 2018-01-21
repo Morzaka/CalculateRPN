@@ -44,16 +44,16 @@ class GetExpression extends Component{
         fetch('https://www.eliftech.com/school-task', {
             method: "post",
             body: JSON.stringify(model)
-        }).then(res=> res.json()).then((err)=>(console.log(err)))
-
+        }).then(res => res.json()).then((err)=>(console.log(err)));
+        console.log(model);
     }
 
 
     render(){
         // console.log(this.state);
         const { fetchedValues } =  this.state; //метод запису диструкторизації
-        const { expressions } = fetchedValues || {}; //перевірка на існування fatchedValues
-        const showExpressions = expressions ? expressions.map(item => <div>{item}</div>) : null;
+        const { expressions } = fetchedValues || {}; //перевірка на існування fetchedValues
+        const showExpressions = expressions ? expressions.map(item => <div key={item}>{item}</div>) : null;
 
       return (<div>
           <button onClick={this.getExpressionData.bind(this)}> Get Expression </button>
@@ -98,6 +98,7 @@ function calcPolishNotation(stringExpression){
                       const result = b ? (a / b) : 42;
                       temporaryArray.push(result);
                       break;
+
                   }
               }
           }
